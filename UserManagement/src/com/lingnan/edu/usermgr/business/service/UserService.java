@@ -52,6 +52,12 @@ public interface UserService {
 	public Vector<UserVO> findAllUser();
 	
 	/**
+	 * 分页查询
+	 * @return 用户信息集合
+	 */
+	public Vector<UserVO> findUsers(int pageNo, int pageSize);
+	
+	/**
 	 * 根据编号查找用户
 	 * @param _id 用户编号
 	 * @return 用户信息

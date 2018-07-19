@@ -284,9 +284,9 @@ public class UserDaoImpl implements UserDao{
 			rs = prep.executeQuery();
 //			stmt = conn.createStatement();			
 //			String sql = "select * from T_USER where name = '"+_name+"'";
-//			rs = stmt.executeQuery(sql);
-			UserVO uv = new UserVO();
+//			rs = stmt.executeQuery(sql);		
 			while(rs.next()) {
+				UserVO uv = new UserVO();
 				uv.setId(rs.getInt("id"));		
 				uv.setBirth(rs.getString("birth"));
 				uv.setMail(rs.getString("mail"));
@@ -304,6 +304,40 @@ public class UserDaoImpl implements UserDao{
 			DBCUtil.closeStatement(rs, stmt);
 		}
 		return vu;
+	}
+
+	/**
+	 * 分页查询
+	 */
+	@Override
+	public Vector<UserVO> findUsers(int pageNo, int pageSize) {
+		ResultSet rs = null;
+		PreparedStatement prep = null;
+		Vector<UserVO> vu = new Vector<UserVO>();
+		try {			
+			prep = conn.prepareStatement("select * from (select t2.*,rownum rn from (select t1.* from t_user t1 order by id) t2) " +
+					"where rn>? and rn<=?");
+			prep.setInt(1, pageSize*(pageNo-1));
+			prep.setInt(2, pageSize*pageNo);
+			rs = prep.executeQuery();		
+			while(rs.next()) {
+				UserVO uv = new UserVO();
+				uv.setId(rs.getInt("id"));	
+				uv.setBirth(rs.getString("birth"));
+				uv.setMail(rs.getString("mail"));
+				uv.setName(rs.getString("name"));
+				uv.setPass(rs.getString("pass"));
+				uv.setPower(rs.getString("power"));
+				uv.setStatus(rs.getString("status"));
+				uv.setUserid(rs.getString("userid"));
+				vu.add(uv);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBCUtil.closeStatement(rs, null);
+		}
+		return vu; 
 	}
 	
 }

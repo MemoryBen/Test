@@ -1,7 +1,14 @@
 package com.lingnan.edu.usermgr.controller;
 
+import java.sql.Connection;
 import java.util.List;
 import java.util.Vector;
+
+import com.lingnan.edu.common.constant.EnumType;
+import com.lingnan.edu.common.dao.DaoFactory;
+import com.lingnan.edu.common.exception.DAOException;
+import com.lingnan.edu.common.util.DBCUtil;
+import com.lingnan.edu.usermgr.business.dao.UserDao;
 import com.lingnan.edu.usermgr.business.service.UserService;
 import com.lingnan.edu.usermgr.business.service.UserServiceImpl;
 import com.lingnan.edu.usermgr.domain.UserVO;
@@ -109,5 +116,16 @@ public class UserController {
 		flag = userService.updateUserById(uv);
 		System.out.println("更新成功");
 		return flag;
+	}
+	
+	/**
+	 * 分页查询
+	 * @param pageNo 页码
+	 * @param pageSize 大小
+	 * @return
+	 */
+	public Vector<UserVO> findUsers(int pageNo, int pageSize) {
+		Vector<UserVO> vu = new Vector<UserVO>();
+		return vu = userService.findUsers(pageNo, pageSize);
 	}
 }

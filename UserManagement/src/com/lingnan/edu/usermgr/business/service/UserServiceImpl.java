@@ -192,6 +192,25 @@ public class UserServiceImpl implements UserService{
 		}
 		return vu;
 	}
+
+	/**
+	 * 分页查询
+	 */
+	@Override
+	public Vector<UserVO> findUsers(int pageNo, int pageSize) {
+		Connection conn = null;
+		Vector<UserVO> vu = new Vector<UserVO>();
+		try {
+			conn = DBCUtil.getConnection();
+			UserDao ua = (UserDao) DaoFactory.getDao(conn, EnumType.USER_DAO);
+			vu = ua.findUsers(pageNo, pageSize);
+		} catch (DAOException e) {
+			throw e;
+		} finally {
+			DBCUtil.closeConnection(conn);
+		}
+		return vu;
+	}
 	
 	
 }

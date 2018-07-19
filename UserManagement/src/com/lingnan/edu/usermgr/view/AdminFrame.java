@@ -3,6 +3,7 @@ package com.lingnan.edu.usermgr.view;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Iterator;
 import java.util.Vector;
 
 import com.lingnan.edu.common.util.MailUtil;
@@ -98,6 +99,7 @@ public class AdminFrame extends NomalFrame{
 							System.out.println("2、根据ID查询用户");
 							System.out.println("3、根据姓名查询用户");
 							System.out.println("4、退出");
+							System.out.println("5、分页查询");
 							t = Integer.parseInt(buff.readLine());
 							switch(t) {
 							case 1:{
@@ -233,6 +235,66 @@ public class AdminFrame extends NomalFrame{
 							}
 							case 4:
 								break;
+							case 5:{
+								Vector<UserVO> vu = new Vector<UserVO>();
+								System.out.println("请输入页面大小");
+								int pageSize = Integer.parseInt(buff.readLine());
+								System.out.println("请输入页码");
+								int pageNo = Integer.parseInt(buff.readLine()); 
+								vu = uc.findUsers(pageNo, pageSize);								
+								System.out.println("编号\t\t账号\t\t姓名\t\t密码\t\t邮箱\t\t权限\t\t生日\t\t状态");
+								for(UserVO user : vu) {
+									System.out.print(user.getId());
+									if(Integer.toString(user.getId()).length()>=8) {
+										System.out.print("\t");
+									}else {
+										System.out.print("\t\t");
+									}
+									System.out.print(user.getUserid());
+									if(user.getUserid().length()>=8){
+										System.out.print("\t");
+									}else {
+										System.out.print("\t\t");
+									}
+									System.out.print(user.getName());
+									if(user.getName().length()>=8){
+										System.out.print("\t");
+									}else {
+										System.out.print("\t\t");
+									}
+									System.out.print(user.getPass());
+									if(user.getPass().length()>=8){
+										System.out.print("\t");
+									}else {
+										System.out.print("\t\t");
+									}
+									System.out.print(user.getMail());
+									if(user.getMail().length()>=8){
+										System.out.print("\t");
+									}else {
+										System.out.print("\t\t");
+									}
+									System.out.print(user.getPower());
+									if(user.getPower().length()>=8){
+										System.out.print("\t");
+									}else {
+										System.out.print("\t\t");
+									}
+									System.out.print(user.getBirth().substring(0, 9));
+									if(user.getBirth().length()>=8){
+										System.out.print("\t");
+									}else {
+										System.out.print("\t\t");
+									}
+									System.out.print(user.getStatus());
+									if(user.getStatus().length()>=8){
+										System.out.print("\t");
+									}else {
+										System.out.print("\t\t");
+									}
+									System.out.println();
+								}
+							}
 							default:
 								System.out.println("请输入正确编号");
 							}
