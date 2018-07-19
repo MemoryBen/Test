@@ -9,20 +9,28 @@ import com.lingnan.edu.common.util.TypeUtil;
 import com.lingnan.edu.usermgr.controller.UserController;
 import com.lingnan.edu.usermgr.domain.UserVO;
 
+/**
+ * 主页面
+ * @author 98242
+ *
+ */
 public class IndexFrame implements BaseFrame{
 
+	/**
+	 * 显示
+	 */
 	@Override
 	public void show() {
 		BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
 		int i = -1;
-		while(true) {
-			System.out.println("欢迎使用用户管理系统");
-			System.out.println("========================");
-			System.out.println("1、登陆");
-			System.out.println("2、注册");
-			System.out.println("3、退出");
-			System.out.println("========================");
-			while(true) {
+		while(i!=3) {
+			while(i!=3) {
+				System.out.println("欢迎使用用户管理系统");
+				System.out.println("========================");
+				System.out.println("1、登陆");
+				System.out.println("2、注册");
+				System.out.println("3、退出");
+				System.out.println("========================");
 				try {
 					i = Integer.parseInt(buff.readLine());
 				} catch (NumberFormatException e) {
@@ -55,11 +63,17 @@ public class IndexFrame implements BaseFrame{
 						System.out.println("欢迎使用!");
 						System.exit(0);
 					}
+					default:
+						System.out.println("请输入正确编号");
 				}
 			}		
 		}			
 	}
 	
+	/**
+	 * 登陆页面
+	 * @throws IOException
+	 */
 	public void loginshow() throws IOException {
 		BufferedReader buff1 = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("请输入登陆账号");
@@ -79,10 +93,14 @@ public class IndexFrame implements BaseFrame{
 		}
 	}
 	
+	/**
+	 * 注册页面
+	 * @throws IOException
+	 */
 	public void register() throws IOException {
 		String mail = null;
 		BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("请输入ID");
+		System.out.println("请输入账号");
 		String userid = buff.readLine();
 		System.out.println("请输入姓名");
 		String name = buff.readLine();

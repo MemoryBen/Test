@@ -6,14 +6,43 @@ package com.lingnan.edu.usermgr.domain;
  *
  */
 public class UserVO {
+	/**
+	 * 用户编号
+	 */
 	private int id;
+	/**
+	 * 用户账号
+	 */
 	private String userid;
+	/**
+	 * 姓名
+	 */
 	private String name;
+	/**
+	 * 密码
+	 */
 	private String pass;
+	/**
+	 * 邮箱
+	 */
 	private String mail;
+	/**
+	 * 权限
+	 */
 	private String power;
+	/**
+	 * 生日
+	 */
 	private String birth;
+	/**
+	 * 状态
+	 */
 	private String status;
+	
+	/**
+	 * 各自的Get/Set方法
+	 */
+	
 	public int getId() {
 		return id;
 	}

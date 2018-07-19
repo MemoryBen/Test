@@ -11,7 +11,12 @@ import com.lingnan.edu.usermgr.business.dao.UserDaoImpl;
  *
  */
 public class DaoFactory {
-	
+	/**
+	 * 通过连接和类型返回相应的DAO接口
+	 * @param conn
+	 * @param type
+	 * @return 返回BaseDao这个统一接口
+	 */
 	public static BaseDao getDao(Connection conn, String type) {
 		if("user".equals(type)) {
 			return new UserDaoImpl(conn);

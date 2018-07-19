@@ -7,6 +7,11 @@ import java.io.InputStreamReader;
 import com.lingnan.edu.usermgr.controller.UserController;
 import com.lingnan.edu.usermgr.domain.UserVO;
 
+/**
+ * 普通用户页面
+ * @author 98242
+ *
+ */
 public class NomalFrame extends IndexFrame{
 	
 	public UserVO uv;
@@ -15,18 +20,23 @@ public class NomalFrame extends IndexFrame{
 		this.uv = uv;
 	}
 	
+	/**
+	 * 普通用户操作页面
+	 * @throws IOException
+	 */
 	public void nshow() throws IOException {
 		BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
 		UserController uc = new UserController();
 		System.out.println("欢迎 "+uv.getName()+" 用户使用本系统");
 		System.out.println("你的权限为："+uv.getPower());
 		int i =-1;
-		while(true) {
-			System.out.println("=================");
-			System.out.println("1、查询个人信息");
-			System.out.println("2、修改个人信息");
-			System.out.println("=================");
-			while(true) {
+		while(i!=3) {
+			while(i!=3) {
+				System.out.println("=================");
+				System.out.println("1、查询个人信息");
+				System.out.println("2、修改个人信息");
+				System.out.println("3、退出");
+				System.out.println("=================");
 				try {
 					i = Integer.parseInt(buff.readLine());
 				} catch (NumberFormatException e) {
@@ -47,23 +57,22 @@ public class NomalFrame extends IndexFrame{
 						break;
 					}
 					case 2:{
-						BufferedReader buff1 = new BufferedReader(new InputStreamReader(System.in));
 						UserVO uv1 = new UserVO();
 						uv1 = uv;
 						System.out.println("请输入修改账号");
-						String userid = buff1.readLine();
+						String userid = buff.readLine();
 						uv1.setUserid(userid);
 						System.out.println("请输入修改姓名");
-						String name = buff1.readLine();
+						String name = buff.readLine();
 						uv1.setName(name);
 						System.out.println("请输入修改密码");
-						String pass = buff1.readLine();
+						String pass = buff.readLine();
 						uv1.setPass(pass);
 						System.out.println("请输入修改邮箱");
-						String mail = buff1.readLine();
+						String mail = buff.readLine();
 						uv1.setMail(mail);
 						System.out.println("请输入修改生日");
-						String birth = buff1.readLine();
+						String birth = buff.readLine();
 						uv1.setBirth(birth);
 						boolean flag = uc.updateUserById(uv1);
 						if(flag) {
@@ -73,6 +82,11 @@ public class NomalFrame extends IndexFrame{
 						}						
 						break;
 					}
+					case 3:{
+						break;
+					}
+					default:
+						System.out.println("请输入正确编号");
 				}
 			}
 		}

@@ -37,7 +37,7 @@ public class DBCUtil {
 	
 	/**
 	 * 开始
-	 * @param conn
+	 * @param conn 连接
 	 */
 	public static void beginTransaction(Connection conn) {
 		try {
@@ -50,7 +50,7 @@ public class DBCUtil {
 	
 	/**
 	 * 提交
-	 * @param conn
+	 * @param conn 连接
 	 */
 	public static void commit(Connection conn) {
 		try {
@@ -63,7 +63,7 @@ public class DBCUtil {
 	
 	/**
 	 * 回滚
-	 * @param conn
+	 * @param conn 连接
 	 */
 	public static void rollback(Connection conn) {
 		try {
@@ -76,7 +76,7 @@ public class DBCUtil {
 	
 	/**
 	 * 关闭连接
-	 * @param conn
+	 * @param conn 连接
 	 */
 	public static void closeConnection(Connection conn) {
 		try {
@@ -91,7 +91,7 @@ public class DBCUtil {
 	
 	/**
 	 * 关闭rs,stmt
-	 * @param rs
+	 * @param rs 结果集
 	 * @param stmt
 	 */
 	public static void closeStatement(ResultSet rs, Statement stmt) {
