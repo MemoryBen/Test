@@ -1,0 +1,10 @@
+com.lingnan.edu.common.constant
+com.lingnan.edu.common.dao
+com.lingnan.edu.common.exception
+com.lingnan.edu.common.util
+com.lingnan.edu.usermgr.business.dao
+com.lingnan.edu.usermgr.business.service
+com.lingnan.edu.usermgr.controller
+com.lingnan.edu.usermgr.domain
+com.lingnan.edu.usermgr.startproject
+com.lingnan.edu.usermgr.view
